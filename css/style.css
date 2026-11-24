@@ -1,0 +1,744 @@
+/* ==========================================================
+   Campus Connect - the ONE stylesheet used by every page.
+   Order: 1) variables  2) base  3) layout  4) components
+          5) page parts  6) bigger screens (media queries)
+   We design for phones first, then add rules for bigger screens.
+   ========================================================== */
+
+/* ---------- 1. Variables (change a colour here, it changes everywhere) ---------- */
+:root {
+  /* Colours */
+  --primary: #0f766e;
+  --primary-dark: #115e59;
+  --primary-light: #e6f4f1;
+  --accent: #f97316;
+  --accent-dark: #ea580c;
+  --background: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #cbd5e1;
+  --input-border: #64748b;
+  --error: #b91c1c;
+  --error-light: #fef2f2;
+  --success: #15803d;
+  --success-light: #f0fdf4;
+  --pending-light: #ffedd5;
+  --pending-text: #7c2d12;
+
+  /* Spacing (an 8px scale) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  /* One radius and one shadow for all cards and buttons */
+  --radius: 12px;
+  --shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  --shadow-hover: 0 8px 20px rgba(15, 23, 42, 0.14);
+
+  /* One speed for all hover effects */
+  --speed: 150ms;
+}
+
+/* ---------- 2. Base styles ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--background);
+}
+
+h1, h2, h3 {
+  line-height: 1.25;
+  margin: 0 0 var(--space-2);
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+
+p {
+  margin: 0 0 var(--space-2);
+}
+
+a {
+  color: var(--primary);
+}
+
+/* The "hidden" attribute must always win, even over our display rules */
+[hidden] {
+  display: none !important;
+}
+
+/* A clear outline for keyboard users */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Text for screen readers only (not shown on screen) */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* "Skip to content" link: appears only when a keyboard user tabs to it */
+.skip-link {
+  position: absolute;
+  left: var(--space-1);
+  top: -100px;
+  background: var(--card);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  z-index: 20;
+}
+
+.skip-link:focus {
+  top: var(--space-1);
+}
+
+/* ---------- 3. Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.section-alt {
+  background: var(--primary-light);
+}
+
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1);
+  margin-bottom: var(--space-3);
+}
+
+.section-header h2 {
+  margin: 0;
+}
+
+.page-title-area {
+  padding: var(--space-4) 0 var(--space-2);
+}
+
+.page-title-area p {
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Card grid: 1 column on phones (more columns in the media queries below) */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+/* ---------- 4. Components ---------- */
+
+/* Buttons: one base style plus a colour style (primary, secondary, accent, danger) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: var(--space-1) var(--space-3);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--speed), transform var(--speed), box-shadow var(--speed);
+}
+
+.btn:hover {
+  box-shadow: var(--shadow);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+}
+
+.btn-secondary {
+  background: var(--card);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-light);
+}
+
+/* Orange button: dark text, because white on orange is hard to read */
+.btn-accent {
+  background: var(--accent);
+  color: var(--text);
+}
+
+.btn-accent:hover {
+  background: var(--accent-dark);
+}
+
+.btn-danger {
+  background: var(--card);
+  color: var(--error);
+  border-color: var(--error);
+}
+
+.btn-danger:hover {
+  background: var(--error-light);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Cards */
+.card {
+  position: relative; /* needed for the "whole card is a link" trick below */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform var(--speed), box-shadow var(--speed);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.card-title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* This invisible layer stretches the title link over the whole card,
+   so tapping anywhere on the card opens it. */
+.card-title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.card-meta {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card-text {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.card-price {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Badges: always include words, so colour is never the only clue */
+.badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 2px var(--space-1);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.badge-verified {
+  background: var(--success-light);
+  color: var(--success);
+  border: 1px solid var(--success);
+}
+
+.badge-pending {
+  background: var(--pending-light);
+  color: var(--pending-text);
+  border: 1px solid var(--pending-text);
+}
+
+/* Category chips (links on the home page) */
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background var(--speed), transform var(--speed);
+}
+
+.chip:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+/* Forms */
+.form-card {
+  max-width: 640px;
+  padding: var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.field {
+  margin-bottom: var(--space-3);
+}
+
+.field label {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: 600;
+}
+
+.field input,
+.field select,
+.field textarea {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  font: inherit;
+  color: var(--text);
+  background: var(--card);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+}
+
+.field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* A field with a problem: red, thicker border */
+.field .input-error {
+  border: 2px solid var(--error);
+}
+
+/* The error message text under a field. The icon means it is not colour-only. */
+.error {
+  margin: var(--space-1) 0 0;
+  color: var(--error);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.error::before {
+  content: "\26A0  ";
+}
+
+.hint {
+  margin: var(--space-1) 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.demo-note {
+  padding: var(--space-1) var(--space-2);
+  margin-bottom: var(--space-3);
+  background: var(--pending-light);
+  color: var(--pending-text);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+/* Messages shown after something works */
+.success-box {
+  max-width: 640px;
+  padding: var(--space-3);
+  background: var(--success-light);
+  border: 2px solid var(--success);
+  border-radius: var(--radius);
+}
+
+.success-box h2 {
+  color: var(--success);
+}
+
+/* Friendly boxes for "nothing here" and "not found" */
+.empty-state {
+  padding: var(--space-6) var(--space-2);
+  text-align: center;
+  background: var(--card);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  margin: 0;
+}
+
+/* ---------- 5. Page parts ---------- */
+
+/* Header and navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.header-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding-top: var(--space-1);
+  padding-bottom: var(--space-1);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.menu-button {
+  width: 44px;
+  height: 44px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--primary);
+  background: var(--card);
+  border: 2px solid var(--primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* On phones the menu is hidden until the button adds the "open" class */
+.main-nav {
+  display: none;
+  width: 100%;
+}
+
+.main-nav.open {
+  display: block;
+}
+
+.main-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0 0 var(--space-1);
+  list-style: none;
+}
+
+.main-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-1) var(--space-2);
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+  transition: background var(--speed);
+}
+
+.main-nav a:hover {
+  background: var(--primary-light);
+}
+
+/* The page you are on: bold underline + coloured, so it is not colour-only */
+.main-nav a[aria-current="page"] {
+  color: var(--primary);
+  background: var(--primary-light);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 3px;
+}
+
+/* Hero (top of the home page) */
+.hero {
+  padding: var(--space-8) 0;
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.hero h1 {
+  font-size: 2.25rem;
+}
+
+.hero p {
+  max-width: 560px;
+  font-size: 1.15rem;
+}
+
+.hero-search {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-width: 560px;
+}
+
+.hero-search input {
+  min-height: 48px;
+  padding: var(--space-1) var(--space-2);
+  font: inherit;
+  color: var(--text);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+}
+
+/* "Why Campus Connect" points */
+.point-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.point {
+  padding: var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.point-icon {
+  font-size: 2rem;
+  margin: 0;
+}
+
+/* Filter bar on the directory and events pages */
+.filter-bar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  margin-bottom: var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.filter-bar .field {
+  margin-bottom: 0;
+}
+
+.results-count {
+  margin-bottom: var(--space-2);
+  font-weight: 600;
+}
+
+/* Detail pages (one business or one event) */
+.detail-box {
+  max-width: 760px;
+  padding: var(--space-3);
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.detail-icon {
+  font-size: 4rem;
+  line-height: 1;
+  margin: 0 0 var(--space-1);
+}
+
+.detail-facts {
+  margin: var(--space-3) 0;
+  padding: 0;
+  list-style: none;
+}
+
+.detail-facts li {
+  padding: var(--space-1) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: var(--space-2);
+}
+
+.event-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+/* A saved ticket */
+.ticket-code {
+  margin: var(--space-1) 0;
+  font-family: "Courier New", monospace;
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--primary-dark);
+}
+
+.ticket {
+  border: 2px dashed var(--primary);
+}
+
+/* Footer */
+.site-footer {
+  margin-top: var(--space-6);
+  padding: var(--space-4) 0;
+  background: var(--text);
+  color: #e2e8f0;
+}
+
+.site-footer a {
+  color: #ffffff;
+}
+
+.site-footer p {
+  margin: 0 0 var(--space-1);
+}
+
+/* ---------- 6. Bigger screens ---------- */
+
+/* Tablets and up (700px): menu shows as a row, 2-column cards */
+@media (min-width: 700px) {
+  h1 { font-size: 2.25rem; }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+
+  .menu-button {
+    display: none;
+  }
+
+  .main-nav {
+    display: block;
+    width: auto;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+    gap: 0;
+    padding: 0;
+  }
+
+  .main-nav a {
+    padding: var(--space-1);
+  }
+
+  .hero-search {
+    flex-direction: row;
+  }
+
+  .hero-search input {
+    flex-grow: 1;
+  }
+
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .point-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .filter-bar {
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: end;
+  }
+
+  .detail-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* Desktops (1000px): 3-column cards and a roomier menu */
+@media (min-width: 1000px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .main-nav a {
+    padding: var(--space-1) var(--space-2);
+  }
+
+  .event-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}

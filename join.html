@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Become a seller | Campus Connect</title>
+  <meta name="description" content="List your student business on Campus Connect so other students can find you.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header: this same block is copied into every page on purpose (see HOW_IT_WORKS.md) -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="logo" href="index.html">🎓 C Connect</a>
+      <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="businesses.html">Businesses</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="tickets.html">My Tickets</a></li>
+          <li><a href="join.html" aria-current="page">Sell</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <section class="page-title-area">
+        <h1>Become a seller</h1>
+        <p>Tell us about your business. You can use an alias if you prefer not to show your name.</p>
+      </section>
+
+      <p class="demo-note">Demo mode: no real money moves and no data leaves your device.</p>
+
+      <form class="form-card" id="join-form" novalidate>
+        <div class="field">
+          <label for="student-name">Your full name</label>
+          <input type="text" id="student-name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="student-email">Student email</label>
+          <input type="email" id="student-email" placeholder="name@students.jkuat.ac.ke" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="student-id">Student ID</label>
+          <input type="text" id="student-id">
+        </div>
+        <div class="field">
+          <label for="campus">Campus</label>
+          <select id="campus">
+            <option value="">Choose your campus</option>
+            <option value="JKUAT">JKUAT</option>
+            <option value="University of Nairobi">University of Nairobi</option>
+            <option value="Kenyatta University">Kenyatta University</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="business-name">Business name</label>
+          <input type="text" id="business-name">
+        </div>
+        <div class="field">
+          <label for="alias">Alias (optional)</label>
+          <input type="text" id="alias">
+          <p class="hint">Shown on your listing instead of your real name.</p>
+        </div>
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="">Choose a category</option>
+            <option value="Food">Food</option>
+            <option value="Fashion">Fashion</option>
+            <option value="Beauty">Beauty</option>
+            <option value="Printing">Printing</option>
+            <option value="Tutoring">Tutoring</option>
+            <option value="Tech">Tech</option>
+            <option value="Thrift">Thrift</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="description">What do you offer?</label>
+          <textarea id="description"></textarea>
+          <p class="hint" id="char-counter" aria-live="polite"></p>
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp number</label>
+          <input type="tel" id="phone" placeholder="0712345678" autocomplete="tel">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit my business</button>
+      </form>
+
+      <div class="success-box" id="join-success" tabindex="-1" aria-live="polite" hidden>
+        <h2>⏳ Thank you! Pending verification</h2>
+        <p><strong id="success-business"></strong> has been saved on this device. In a real site, we would now check your student ID. For now it shows as <strong>Pending</strong> in the directory.</p>
+        <a class="btn btn-primary" id="see-listing" href="businesses.html">See my listing</a>
+        <a class="btn btn-secondary" href="businesses.html">Browse all businesses</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer: also copied into every page -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Campus Connect</strong> - Sell. Find. Attend. No followers needed.</p>
+      <p>A university class project. All businesses, people and phone numbers are made up.</p>
+      <p><a href="businesses.html">Businesses</a> · <a href="events.html">Events</a> · <a href="join.html">Sell with us</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts go last so the page is already on screen when they run. data.js and main.js must come first. -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/join.js"></script>
+</body>
+</html>

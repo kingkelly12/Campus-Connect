@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Connect | Sell. Find. Attend.</title>
+  <meta name="description" content="Campus Connect helps Kenyan university students find campus businesses and events, then chat with sellers on WhatsApp.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header: this same block is copied into every page on purpose (see HOW_IT_WORKS.md) -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="logo" href="index.html">🎓 C Connect</a>
+      <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="businesses.html">Businesses</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="tickets.html">My Tickets</a></li>
+          <li><a href="join.html">Sell</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <h1>Campus Connect</h1>
+        <p><strong>Sell. Find. Attend. No followers needed.</strong></p>
+        <p>Search student businesses and events at your campus, then message the seller on WhatsApp.</p>
+        <!-- A normal form: pressing Search opens businesses.html?q=what-you-typed. No JavaScript needed. -->
+        <form class="hero-search" action="businesses.html" method="get" role="search">
+          <label class="visually-hidden" for="hero-q">Search businesses</label>
+          <input type="search" id="hero-q" name="q" placeholder="Try &quot;braids&quot;, &quot;printing&quot; or &quot;tutor&quot;">
+          <button class="btn btn-accent" type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Browse by category</h2>
+        <ul class="chip-list">
+          <li><a class="chip" href="businesses.html?category=Food"><span aria-hidden="true">🍔</span> Food</a></li>
+          <li><a class="chip" href="businesses.html?category=Fashion"><span aria-hidden="true">👗</span> Fashion</a></li>
+          <li><a class="chip" href="businesses.html?category=Beauty"><span aria-hidden="true">💇</span> Beauty</a></li>
+          <li><a class="chip" href="businesses.html?category=Printing"><span aria-hidden="true">🖨️</span> Printing</a></li>
+          <li><a class="chip" href="businesses.html?category=Tutoring"><span aria-hidden="true">📚</span> Tutoring</a></li>
+          <li><a class="chip" href="businesses.html?category=Tech"><span aria-hidden="true">💻</span> Tech</a></li>
+          <li><a class="chip" href="businesses.html?category=Thrift"><span aria-hidden="true">🛍️</span> Thrift</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2>Upcoming events</h2>
+          <a href="events.html">See all events</a>
+        </div>
+        <div class="card-grid" id="upcoming-events"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>New businesses</h2>
+          <a href="businesses.html">See all businesses</a>
+        </div>
+        <div class="card-grid" id="new-businesses"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <h2>Why Campus Connect?</h2>
+        <ul class="point-list">
+          <li class="point">
+            <p class="point-icon" aria-hidden="true">🔍</p>
+            <h3>Easy to find</h3>
+            <p>WhatsApp group adverts get buried in hours. Here, everything is in one place you can search by keyword, category and campus.</p>
+          </li>
+          <li class="point">
+            <p class="point-icon" aria-hidden="true">✅</p>
+            <h3>Trusted sellers</h3>
+            <p>Sellers are students. Your business is shown as a brand, and you can use an alias if you are shy about showing your name.</p>
+          </li>
+          <li class="point">
+            <p class="point-icon" aria-hidden="true">💬</p>
+            <h3>Talk directly</h3>
+            <p>Every listing has Chat on WhatsApp and Call buttons. Events have tickets you can buy with M-Pesa.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer: also copied into every page -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Campus Connect</strong> - Sell. Find. Attend. No followers needed.</p>
+      <p>A university class project. All businesses, people and phone numbers are made up.</p>
+      <p><a href="businesses.html">Businesses</a> · <a href="events.html">Events</a> · <a href="join.html">Sell with us</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts go last so the page is already on screen when they run. data.js and main.js must come first. -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

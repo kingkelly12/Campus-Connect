@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Event | Campus Connect</title>
+  <meta name="description" content="See event details and buy a ticket with M-Pesa (demo only).">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Header: this same block is copied into every page on purpose (see HOW_IT_WORKS.md) -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="logo" href="index.html">🎓 C Connect</a>
+      <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">☰</button>
+      <nav class="main-nav" id="main-nav" aria-label="Main menu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="businesses.html">Businesses</a></li>
+          <li><a href="events.html" aria-current="page">Events</a></li>
+          <li><a href="tickets.html">My Tickets</a></li>
+          <li><a href="join.html">Sell</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container section">
+      <div id="event-details" hidden>
+        <div class="event-layout">
+          <section class="detail-box">
+            <p class="detail-icon" id="event-icon" aria-hidden="true"></p>
+            <h1 id="event-title"></h1>
+            <p id="event-description"></p>
+            <ul class="detail-facts">
+              <li><strong>Date:</strong> <span id="event-date"></span></li>
+              <li><strong>Venue:</strong> <span id="event-venue"></span></li>
+              <li><strong>Campus:</strong> <span id="event-campus"></span></li>
+              <li><strong>Category:</strong> <span id="event-category"></span></li>
+              <li><strong>Organiser:</strong> <span id="event-organiser"></span></li>
+            </ul>
+            <a class="back-link" href="events.html">← Back to all events</a>
+          </section>
+
+          <section>
+            <h2>Get your ticket</h2>
+            <p class="demo-note">Demo mode: no real money moves and no data leaves your device.</p>
+
+            <form class="form-card" id="ticket-form" novalidate>
+              <div class="field">
+                <label for="buyer-name">Your name</label>
+                <input type="text" id="buyer-name" autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="buyer-phone">M-Pesa phone number</label>
+                <input type="tel" id="buyer-phone" placeholder="0712345678" autocomplete="tel">
+                <p class="hint">We only ask for a number. We never ask for your M-Pesa PIN.</p>
+              </div>
+              <div class="field">
+                <label for="ticket-type">Ticket type</label>
+                <select id="ticket-type">
+                  <option value="">Choose a ticket type</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="quantity">Quantity (1 to 5)</label>
+                <input type="number" id="quantity" value="1" min="1" max="5">
+              </div>
+              <button class="btn btn-primary" type="submit">Pay with M-Pesa (pretend)</button>
+            </form>
+
+            <div class="success-box" id="confirmation" tabindex="-1" aria-live="polite" hidden>
+              <h2>✔ Payment received (pretend)</h2>
+              <p id="confirmation-summary"></p>
+              <p>Your ticket code:</p>
+              <p class="ticket-code" id="ticket-code"></p>
+              <a class="btn btn-primary" href="tickets.html">See my tickets</a>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="empty-state" id="not-found" hidden>
+        <p class="empty-state-icon" aria-hidden="true">🤷</p>
+        <h1>Event not found</h1>
+        <p>We could not find that event. The link may be wrong.</p>
+        <a class="btn btn-primary" href="events.html">Back to all events</a>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer: also copied into every page -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>Campus Connect</strong> - Sell. Find. Attend. No followers needed.</p>
+      <p>A university class project. All businesses, people and phone numbers are made up.</p>
+      <p><a href="businesses.html">Businesses</a> · <a href="events.html">Events</a> · <a href="join.html">Sell with us</a></p>
+    </div>
+  </footer>
+
+  <!-- Scripts go last so the page is already on screen when they run. data.js and main.js must come first. -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/event.js"></script>
+</body>
+</html>
